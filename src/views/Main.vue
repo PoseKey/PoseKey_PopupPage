@@ -2,7 +2,7 @@
     <section>
         <h3>Profile</h3>
         <p>{{displayName}}</p>
-        <button v-on:click="logout">Log out</button>
+        <v-btn color="accent" v-on:click="logout">Log out</v-btn>
     </section>
 </template>
 

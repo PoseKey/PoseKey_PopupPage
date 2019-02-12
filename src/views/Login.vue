@@ -1,5 +1,5 @@
 <template>
-    <button v-on:click="loginG">signIn</button>
+    <v-btn color="primary" v-on:click="loginG">signIn</v-btn>
 </template>
 
 <script>

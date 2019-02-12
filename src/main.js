@@ -1,15 +1,16 @@
 import Vue from 'vue'
-import './plugins/vuetify'
 import App from './App.vue'
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+//theme
+import './plugins/vuetify'
+// import Vuetify from 'vuetify'
+// import 'vuetify/dist/vuetify.min.css'
+//OAuth + vuex + router-sync
 import router from './router'
-
 import { sync } from 'vuex-router-sync'
 import store from './store'
 import FirebaseAuthPlugin from './FirebaseAuthPlugin'
 
-Vue.use(Vuetify)
+// Vue.use(Vuetify)
 Vue.use(FirebaseAuthPlugin)
 Vue.config.productionTip = false
 
