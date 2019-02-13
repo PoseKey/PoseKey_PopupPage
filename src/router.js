@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import About from './views/About.vue'
+import Setting from './views/Setting.vue'
 import Login from './views/Login.vue'
 import Main from './views/Main.vue'
+import Mirror from './views/Mirror.vue'
 
 import store from './store'
 Vue.use(Router)
@@ -18,18 +18,26 @@ const router = new Router({
     //   component: Home
     // },
     {
-      path: '/about',
-      name: 'about',
+      path: '/setting',
+      name: 'setting',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-      component: About
+      component: Setting,
+      meta: {
+        authRequired: true
+      }
     },
     {
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/Mirror',
+      name: "Mirror",
+      component: Mirror,
     },
     {
       path: '/',

@@ -1,7 +1,7 @@
 import Vue from 'vue'
+import './plugins/vuetify'
 import App from './App.vue'
 //theme
-import './plugins/vuetify'
 // import Vuetify from 'vuetify'
 // import 'vuetify/dist/vuetify.min.css'
 //OAuth + vuex + router-sync
