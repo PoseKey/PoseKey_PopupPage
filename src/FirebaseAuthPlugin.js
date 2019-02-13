@@ -16,10 +16,14 @@ export default {
     const firebase = Firebase.initializeApp(config)
     const auth = firebase.auth()
     const db = firebase.firestore()
-    const settings = {/* your settings... */ timestampsInSnapshots: true};
-    db.settings(settings);
+    // const settings = {/* your settings... */ timestampsInSnapshots: true};
+    // db.settings(settings);
 
-    Vue.prototype.$db = db
+    Vue.prototype.$db = {
+      requireDB: ()=>{
+        return db;
+      }
+    }
 
     Vue.prototype.$auth = {
         loginG: async () => {
@@ -40,6 +44,6 @@ export default {
             photoURL: user.photoURL,
         })
     })
-  }
+  }, 
 }
 

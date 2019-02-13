@@ -6,21 +6,21 @@
     </div>
     <router-view/>
   </div> -->
-  <v-app>
-    <v-card height="680">
+  <v-app id="app">
       <v-toolbar color="primary">
         <v-toolbar-title>PoseKey</v-toolbar-title>
           <!-- <v-switch label="ON/OFF"></v-switch> -->
+          <v-spacer></v-spacer>
+          <v-btn flat icon @click="switched()">
+            <v-icon>power_settings_new</v-icon>
+          </v-btn>
       </v-toolbar>
-      <v-container>
-        <router-view></router-view>
-      </v-container>
-      <v-bottom-nav absolute>
+      <router-view></router-view>
+      <v-bottom-nav>
         <v-btn flat to="/"><span>gesture</span><v-icon>gesture</v-icon></v-btn>
         <v-btn flat to="/mirror"><span>Mirror</span><v-icon>face</v-icon></v-btn>
         <v-btn flat to="/setting"><span>Settings</span><v-icon>settings</v-icon></v-btn>
       </v-bottom-nav>
-    </v-card>
   </v-app>
 </template>
 
@@ -31,8 +31,44 @@ export default {
   name: 'App',
   components:{
   },
-  data:{
+  data(){
+    return {
+      boolean: false,
+    };
   },
+  methods:{
+    switched: function(){
+      // console.log('switch');
+      if (this.boolean){
+        chrome.runtime.sendMessage(
+          {data:"ON"},
+          (response)=>{
+            console.log(response);
+          }
+        )
+      }
+      else{
+        chrome.runtime.sendMessage(
+          {data:"OFF"},
+          (response)=>{
+            console.log(response);
+          }
+        )
+      }
+    }
+  },
+  mounted(){
+    chrome.runtime.sendMessage(
+      {data:"?"},
+      (response)=>{
+        console.log(response);
+        if(response.data==true){
+          this.boolean =true;
+        }
+        else this.boolean =false;
+      }
+    )
+  }
 }
 </script>
 
