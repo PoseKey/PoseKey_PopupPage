@@ -135,7 +135,7 @@ export default {
         '1.0',
         '1.01'
       ],
-      pm:"0.75",
+      pm:1,
       sc:0.5,
       fq:500,
       ac:70,
@@ -147,10 +147,11 @@ export default {
         this.$router.replace({name: 'login'})
     },
     change: function(){
+      console.log(this.pm);
       chrome.runtime.sendMessage(
         {
           data:"setting",
-          pmm: parseFloat(this.pm),
+          pmm: this.pm,
           scm: this.sc,
           fqm: this.fq,
           acm: this.ac
