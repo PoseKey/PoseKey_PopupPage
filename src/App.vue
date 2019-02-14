@@ -7,7 +7,7 @@
     <router-view/>
   </div> -->
   <v-app id="app">
-    <v-toolbar color="primary">
+    <v-toolbar fixed color="primary">
       <v-toolbar-title>PoseKey</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn flat icon @click="switched()">
@@ -15,7 +15,7 @@
         </v-btn>
     </v-toolbar>
       <router-view></router-view>
-    <v-bottom-nav fixed:value="true">
+    <v-bottom-nav shift style="margin:0px">
       <v-btn flat to="/"><span>gesture</span><v-icon>gesture</v-icon></v-btn>
       <v-btn flat to="/mirror"><span>Mirror</span><v-icon>face</v-icon></v-btn>
       <v-btn flat to="/setting"><span>Settings</span><v-icon>settings</v-icon></v-btn>
