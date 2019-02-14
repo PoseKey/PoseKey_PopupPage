@@ -1,12 +1,33 @@
 <template>
   <div class="about">
-    <v-layout row wrap align-center="">
+    <!-- <v-layout row wrap align-center=""> -->
+<!--       
       <v-avatar size="30">
         <img :src="this.user.photoURL" alt="avatar">
       </v-avatar>
       <h3> {{displayName}} </h3>
-      <v-btn color="primary" round v-on:click="logout">Sign Out</v-btn>
-    </v-layout>
+      <v-btn color="primary" round v-on:click="logout">Sign Out</v-btn> -->
+
+    <!-- </v-layout> -->
+    <v-card>
+      <v-card-title>
+        <h1>Signed in as</h1>
+      </v-card-title>
+      <v-card-text>
+        <v-list-tile align-content-end>
+          <v-list-tile-avatar>
+            <img :src="this.user.photoURL" alt="avatar">
+          </v-list-tile-avatar>
+          <v-list-tile-content>
+          <h3> {{displayName}} </h3>
+          </v-list-tile-content>
+          <v-list-tile-action>
+            <v-btn color="primary" round flat v-on:click="logout">Sign Out</v-btn>
+          </v-list-tile-action>
+        </v-list-tile>
+      </v-card-text>
+    </v-card>
+    <v-divider></v-divider>
     <v-card>
       <v-card-title>
         <h1>Setting</h1>
@@ -25,7 +46,9 @@
       <v-card-text>
         <v-slider
           label = "image scale"
-          min="20"
+          step="0.01"
+          min="0.2"
+          max="1.0"
           thumb-label="always"
           >
         </v-slider>
@@ -33,8 +56,20 @@
       <v-card-text>
         <v-slider
           label="frequency"
-          min="2"
-          max="10"
+          step="100"
+          min="100"
+          max="1000"
+          thumb-label="always"
+        ></v-slider>
+      </v-card-text>
+      <v-card-text>
+        <v-slider
+          label="Accuracy"
+          min="50"
+          max="100"
+          ticks="always"
+          tick-size="2"
+          step="10"
           thumb-label="always"
         ></v-slider>
       </v-card-text>
