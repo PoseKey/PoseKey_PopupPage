@@ -34,36 +34,43 @@
       </v-card-title>
       <v-card-text>
         <v-slider
+          v-model="pm"
           label = "posenet model"
           :tick-labels="ticksLabels"
           :max="3"
           step="1"
           ticks="always"
           tick-size="2"
+          @change="change()"
           >
         </v-slider>
       </v-card-text>
       <v-card-text>
         <v-slider
+          v-model="sc"
           label = "image scale"
           step="0.01"
           min="0.2"
           max="1.0"
           thumb-label="always"
+          @change="change()"
           >
         </v-slider>
       </v-card-text>
       <v-card-text>
         <v-slider
+          v-model="fq"
           label="frequency"
           step="100"
           min="100"
           max="1000"
           thumb-label="always"
+          @change="change()"
         ></v-slider>
       </v-card-text>
       <v-card-text>
         <v-slider
+          v-model="ac"
           label="Accuracy"
           min="50"
           max="100"
@@ -71,6 +78,7 @@
           tick-size="2"
           step="10"
           thumb-label="always"
+          @change="change()"
         ></v-slider>
       </v-card-text>
     </v-card>
@@ -118,12 +126,6 @@ export default {
       return !!this.user ? this.user.displayName : ''
     },
   },
-  methods: {
-      logout: function(){
-          this.$auth.logout();
-          this.$router.replace({name: 'login'})
-      }
-  },
   data (){
     return {
       value: 0,
@@ -132,8 +134,41 @@ export default {
         '0.75',
         '1.0',
         '1.01'
-      ]
+      ],
+      pm:"0.75",
+      sc:0.5,
+      fq:500,
+      ac:70,
     }
+  },
+  methods: {
+    logout: function(){
+        this.$auth.logout();
+        this.$router.replace({name: 'login'})
+    },
+    change: function(){
+      chrome.runtime.sendMessage(
+        {
+          data:"setting",
+          pmm: parseFloat(this.pm),
+          scm: this.sc,
+          fqm: this.fq,
+          acm: this.ac
+        }
+      );
+    }
+  },
+  mounted (){
+    chrome.runtime.sendMessage(
+      {data:"?"},
+      (response)=>{
+        console.log(response);
+        this.pm = response.pmm;
+        this.sc = response.scm;
+        this.fq = response.fqm;
+        this.ac = response.acm;
+      }
+    )
   }
 }
 </script>

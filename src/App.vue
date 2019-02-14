@@ -15,12 +15,14 @@
         </v-btn>
     </v-toolbar>
       <router-view></router-view>
+      
     <v-bottom-nav shift style="margin:0px">
       <v-btn flat to="/"><span>gesture</span><v-icon>gesture</v-icon></v-btn>
       <v-btn flat to="/mirror"><span>Mirror</span><v-icon>face</v-icon></v-btn>
       <v-btn flat to="/setting"><span>Settings</span><v-icon>settings</v-icon></v-btn>
     </v-bottom-nav>
   </v-app>
+  
 </template>
 
 
@@ -78,8 +80,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   /* color: #2c3e50; */
-}
-.v-bottom-nav{
-  margin: 0px;
 }
 </style>
