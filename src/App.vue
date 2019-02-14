@@ -26,14 +26,26 @@
         <v-tab to="/setting"><v-icon>settings</v-icon></v-tab>
       </v-tabs>
     </v-toolbar>
-    <router-view></router-view>
-    <!-- <v-card>
-      <v-bottom-nav absolute active.sync="gesture" shift style="margin:0px">
-        <v-btn flat value="gesture" to="/"><span>gesture</span><v-icon>gesture</v-icon></v-btn>
-        <v-btn flat value="mirror" to="/mirror"><span>Mirror</span><v-icon>face</v-icon></v-btn>
-        <v-btn flat value="setting" to="/setting"><span>Settings</span><v-icon>settings</v-icon></v-btn>
-      </v-bottom-nav>
-    </v-card> -->
+    <v-container
+      class="scroll-y">
+      <v-layout
+        column
+        align-center
+        justify-center
+        style="max-height:500px;margin-top:30px;margin-bottom:30px;"
+      >
+        <router-view></router-view>
+      </v-layout>
+    </v-container>
+    <!-- <v-container style="height 50px; max-height:50px;">
+        <v-card>
+          <v-bottom-nav absolute active.sync="gesture" shift style="margin:0px">
+            <v-btn flat value="gesture" to="/"><span>gesture</span><v-icon>gesture</v-icon></v-btn>
+            <v-btn flat value="mirror" to="/mirror"><span>Mirror</span><v-icon>face</v-icon></v-btn>
+            <v-btn flat value="setting" to="/setting"><span>Settings</span><v-icon>settings</v-icon></v-btn>
+          </v-bottom-nav>
+        </v-card>
+    </v-container> -->
   </v-app>
 </template>
 

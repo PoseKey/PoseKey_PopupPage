@@ -91,14 +91,14 @@
       </v-card-text>
     </v-card>
     <v-divider></v-divider>
-    <!-- <v-card>
+    <v-card>
       <v-card-title>
         <h2>Credits</h2>
       </v-card-title>
       <v-card-text>
         <div>All Icons are made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       </v-card-text>
-    </v-card> -->
+    </v-card>
     <!-- <v-layout>
       <v-flex xs12>
         <v-slider
@@ -150,10 +150,6 @@ export default {
     }
   },
   methods: {
-    logout: function(){
-        this.$auth.logout();
-        this.$router.replace({name: 'login'})
-    },
     change: function(){
       console.log(this.pm);
       chrome.runtime.sendMessage(
