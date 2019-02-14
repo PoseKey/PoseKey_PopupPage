@@ -7,7 +7,7 @@
     <router-view/>
   </div> -->
   <v-app id="app">
-    <v-toolbar fixed color="primary">
+    <v-toolbar color="primary">
       <v-toolbar-title>PoseKey</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn flat icon @click="switched()">
