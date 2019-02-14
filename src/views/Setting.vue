@@ -9,7 +9,7 @@
       <v-btn color="primary" round v-on:click="logout">Sign Out</v-btn> -->
 
     <!-- </v-layout> -->
-    <v-card>
+    <!-- <v-card>
       <v-card-title>
         <h2>Signed in as</h2>
       </v-card-title>
@@ -27,7 +27,7 @@
         </v-list-tile>
       </v-card-text>
     </v-card>
-    <v-divider></v-divider>
+    <v-divider></v-divider> -->
     <v-card>
       <v-card-title>
         <h2>Setting</h2>
@@ -41,6 +41,8 @@
           step="1"
           ticks="always"
           tick-size="2"
+          persistent-hint
+          hint="Increasing this value will detect your pose better, but this will also increase the delay of loading websites."
           @change="change()"
           >
         </v-slider>
@@ -53,6 +55,8 @@
           min="0.2"
           max="1.0"
           thumb-label="always"
+          persistent-hint
+          hint="Increasing this value will detect your pose better, but this may cause the computer to lag"
           @change="change()"
           >
         </v-slider>
@@ -65,6 +69,8 @@
           min="100"
           max="1000"
           thumb-label="always"
+          persistent-hint
+          hint="Increasing this value will detect your pose faster, but this might cause the computer to lag."
           @change="change()"
         ></v-slider>
       </v-card-text>
@@ -78,19 +84,21 @@
           tick-size="2"
           step="10"
           thumb-label="always"
+          persistent-hint
+          hint="Increasing this value will decrease mis-recognition, but in trade off, it will require the user to show accurate poses."
           @change="change()"
         ></v-slider>
       </v-card-text>
     </v-card>
     <v-divider></v-divider>
-    <v-card>
+    <!-- <v-card>
       <v-card-title>
         <h2>Credits</h2>
       </v-card-title>
       <v-card-text>
         <div>All Icons are made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       </v-card-text>
-    </v-card>
+    </v-card> -->
     <!-- <v-layout>
       <v-flex xs12>
         <v-slider
