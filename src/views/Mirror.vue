@@ -10,9 +10,7 @@
         </div>
     </div> -->
     <v-card height="360">
-        <v-card-media id="ifNErr">
-            <canvas id="output" width="610" height="360"></canvas>
-        </v-card-media>
+        <canvas id="output" width="610" height="360"></canvas>
         <v-card-text id="ifErr" style="display:none">
             <p id=info> Camera access has been denied. If you have camera, you can allow access
             <a href="chrome-extension://pifojknhlbglpfoehbppiddjlgebooom/options.html" target="_blank">here</a>
@@ -56,6 +54,11 @@ export default {
     },
     beforeDestroy(){
         net.dispose();
+        video.pause();
+        video.srcObject = null;
+        stream.getTracks().forEach((track) => {
+            track.stop();
+        });
         // console.log('disposed');
     }
 }
