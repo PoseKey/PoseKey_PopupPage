@@ -13,7 +13,7 @@
       <v-btn dark flat icon @click="switched()">
         <v-icon>power_settings_new</v-icon>
       </v-btn>
-      <v-btn v-if="!this.$auth.user" dark round flat v-on:click="logout">Sign Out</v-btn>
+      <!-- <v-btn v-if="!this.$auth.user" dark round flat v-on:click="logout">Sign Out</v-btn> -->
       <v-tabs 
         slot="extension"
         color="primary"
@@ -28,14 +28,14 @@
     </v-toolbar>
     <v-container
       class="scroll-y">
-      <v-layout
+      <!-- <v-layout
         column
         align-center
         justify-center
         style="max-height:500px;margin-top:30px;margin-bottom:30px;"
-      >
+      > -->
         <router-view></router-view>
-      </v-layout>
+      <!-- </v-layout> -->
     </v-container>
     <!-- <v-container style="height 50px; max-height:50px;">
         <v-card>
@@ -82,17 +82,13 @@ export default {
       //     }
       //   )
       // }
-    },
-    logout: function(){
-        this.$auth.logout();
-        this.$router.replace({name: 'login'})
-    },
+    }
   },
   mounted(){
     chrome.runtime.sendMessage(
       {data:"?"},
       (response)=>{
-        console.log(response);
+        // console.log(response);
         if(response.data==true){
           this.boolean =true;
         }

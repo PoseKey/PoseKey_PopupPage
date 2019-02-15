@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <!-- <div>
         <div id="ifNErr">
             <canvas id="output" width="640" height="480"></canvas>
         </div>
@@ -8,7 +8,17 @@
             <a href="chrome-extension://pifojknhlbglpfoehbppiddjlgebooom/options.html" target="_blank">here</a>
             .</p>
         </div>
-    </div>
+    </div> -->
+    <v-card height="360">
+        <v-card-media id="ifNErr">
+            <canvas id="output" width="610" height="360"></canvas>
+        </v-card-media>
+        <v-card-text id="ifErr" style="display:none">
+            <p id=info> Camera access has been denied. If you have camera, you can allow access
+            <a href="chrome-extension://pifojknhlbglpfoehbppiddjlgebooom/options.html" target="_blank">here</a>
+            .</p>
+        </v-card-text>
+    </v-card>
 </template>
 
 <script>
@@ -46,7 +56,7 @@ export default {
     },
     beforeDestroy(){
         net.dispose();
-        console.log('disposed');
+        // console.log('disposed');
     }
 }
 async function loadVideo(){

@@ -27,16 +27,16 @@ export default {
 
     Vue.prototype.$auth = {
         loginG: async () => {
-            const provider = new Firebase.auth.GoogleAuthProvider();
-            return await auth.signInWithPopup(provider);
+          const provider = new Firebase.auth.GoogleAuthProvider();
+          return await auth.signInWithPopup(provider);
         },
         logout: async () => {
-            await auth.signOut()
+          await auth.signOut()
         }
     }
     auth.onAuthStateChanged(user => {
         store.commit('updateUser',{ user });
-        console.log(user);
+        // console.log(user);
         if(user) db.collection('users').doc(user.uid.toString()).set({
             uid: user.uid,
             name: user.displayName,

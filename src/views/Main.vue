@@ -65,8 +65,8 @@ export default {
                         })
                     }
                 });
-                console.log(this.headers);
-                console.log(this.details);
+                // console.log(this.headers);
+                // console.log(this.details);
             }
         );
     }

@@ -9,17 +9,17 @@
       <v-btn color="primary" round v-on:click="logout">Sign Out</v-btn> -->
 
     <!-- </v-layout> -->
-    <!-- <v-card>
+    <v-card>
       <v-card-title>
         <h2>Signed in as</h2>
       </v-card-title>
       <v-card-text>
-        <v-list-tile align-content-end>
-          <v-list-tile-avatar>
+        <v-list-tile>
+          <v-list-tile-avatar size="30px">
             <img :src="this.user.photoURL" alt="avatar">
           </v-list-tile-avatar>
           <v-list-tile-content>
-          <h3> {{displayName}} </h3>
+            <h3> {{displayName}} </h3>
           </v-list-tile-content>
           <v-list-tile-action>
             <v-btn color="primary" round flat v-on:click="logout">Sign Out</v-btn>
@@ -27,10 +27,20 @@
         </v-list-tile>
       </v-card-text>
     </v-card>
-    <v-divider></v-divider> -->
+    <v-divider></v-divider>
     <v-card>
       <v-card-title>
-        <h2>Setting</h2>
+        <v-tooltip right>
+          <template #activator="data">
+           <h2 v-on="data.on">Setting</h2>
+          </template>
+          <span>Recommended 
+            posenet model: 0.75
+            image scale: 0.4
+            frequency: 0.5
+            accuracy: 0.6
+          </span>
+        </v-tooltip>
       </v-card-title>
       <v-card-text>
         <v-slider
@@ -126,6 +136,7 @@
 
 <script>
 import {mapState} from 'vuex'
+import store from '../store'
 
 export default {
   computed: {
@@ -151,7 +162,15 @@ export default {
   },
   methods: {
     change: function(){
-      console.log(this.pm);
+      // console.log(this.pm);
+      let db = this.$db.requireDB();
+      let uid = store.state.user.uid;
+      db.collection('users').doc(uid).collection('model').doc('setting').update({
+        pm: this.pm,
+        sc: this.sc,
+        fq: this.fq,
+        ac: this.ac,
+      });
       chrome.runtime.sendMessage(
         {
           data:"setting",
@@ -161,17 +180,43 @@ export default {
           acm: this.ac
         }
       );
-    }
+    },
+    logout: function(){
+        this.$auth.logout();
+        this.$router.replace({name: 'login'})
+    },
   },
   mounted (){
-    chrome.runtime.sendMessage(
-      {data:"?"},
-      (response)=>{
-        console.log(response);
-        this.pm = response.pmm;
-        this.sc = response.scm;
-        this.fq = response.fqm;
-        this.ac = response.acm;
+    // chrome.runtime.sendMessage(
+    //   {data:"?"},
+    //   (response)=>{
+    //     console.log(response);
+    //     this.pm = response.pmm;
+    //     this.sc = response.scm;
+    //     this.fq = response.fqm;
+    //     this.ac = response.acm;
+    //   }
+    // )
+    let db = this.$db.requireDB();
+    let uid = store.state.user.uid;
+    // console.log(uid);
+    db.collection('users').doc(uid).collection('model').doc('setting').get().then(
+      (data)=>{
+        if(data.exists){
+          // console.log(data.data());
+          this.pm = data.data().pm;
+          this.sc = data.data().sc;
+          this.fq = data.data().fq;
+          this.ac = data.data().ac;
+        }
+        else{
+          db.collection('users').doc(uid).collection('model').doc('setting').set({
+            pm: this.pm,
+            sc: this.sc,
+            fq: this.fq,
+            ac: this.ac,
+          })
+        }
       }
     )
   }
