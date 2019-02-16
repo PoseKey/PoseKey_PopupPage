@@ -155,7 +155,7 @@ export default {
         '1.01'
       ],
       pm:1,
-      sc:0.5,
+      sc:0.4,
       fq:500,
       ac:70,
     }
