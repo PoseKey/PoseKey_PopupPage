@@ -54,6 +54,7 @@
                             <v-list-tile
                             v-for="item in details"
                             :key="item.name"
+                            style="margin:5px;align-center=true;"
                             >
                                 <v-list-tile-content>
                                     <v-list-tile-title v-text="item.Description"></v-list-tile-title>
@@ -67,7 +68,6 @@
                                     item-value="text"
                                     clearable
                                     dense
-                                    single-line
                                     return-object
                                     @change="switchd(item.id - 1)"
                                     ></v-overflow-btn>
