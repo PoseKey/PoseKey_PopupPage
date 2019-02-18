@@ -54,15 +54,18 @@
                             <v-list-tile
                             v-for="item in details"
                             :key="item.name"
-                            style="margin:5px;align-center=true;"
+                            style="margin:5px;"
                             >
+                                <v-list-tile-avatar>
+                                    <img :src="item.image"/>
+                                </v-list-tile-avatar>
                                 <v-list-tile-content>
                                     <v-list-tile-title v-text="item.Description"></v-list-tile-title>
                                 </v-list-tile-content>
                                 <v-list-tile-action>
                                     <v-overflow-btn
                                     v-model="defaults[item.id - 1]"
-                                    color="blue" style="width:230px;" 
+                                    color="blue" style="width:280px;" 
                                     :items="options"
                                     label="Functions"
                                     item-value="text"
@@ -137,26 +140,6 @@ export default {
             ],
             details: [],
             options: ['volume down','volume up', 'stop video','forward 10sec', 'backward 10sec', 'next video', 'scroll up', 'scroll down', 'previous slide', 'next slide'],
-            // options: [
-            //     {
-            //         text: 'Scroll Up'
-            //     },
-            //     {
-            //         text: 'Scroll Down'
-            //     },
-            //     {
-            //         text: '1'
-            //     },
-            //     {
-            //         text: '2'
-            //     },
-            //     {
-            //         text: '3'
-            //     },
-            //     {
-            //         text: '4'
-            //     },
-            // ],
             custom:false,
             step: 1,
             defaults:[],
@@ -177,6 +160,14 @@ export default {
             db.collection('users').doc(uid).collection('model').doc('map').update({
                 defaults: this.defaults,
             });
+            chrome.runtime.sendMessage(
+            {
+                data:"poses",
+                customm: this.custom,
+                defaultsm: this.defaults,
+                customsm: this.customs
+            }
+      );
         },
         switchc(num){
             // console.log(item, this.defaults);
@@ -186,6 +177,12 @@ export default {
             let uid = store.state.user.uid;
             db.collection('users').doc(uid).collection('model').doc('map').update({
                 customs : this.customs,
+            });
+            chrome.runtime.sendMessage({
+                data:"poses",
+                customm: this.custom,
+                defaultsm: this.defaults,
+                customsm: this.customs
             });
         }
     },
