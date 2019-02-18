@@ -1,14 +1,4 @@
 <template>
-    <!-- <div>
-        <div id="ifNErr">
-            <canvas id="output" width="640" height="480"></canvas>
-        </div>
-        <div id="ifErr" style="display:none">
-            <p id=info> Camera access has been denied. If you have camera, you can allow access
-            <a href="chrome-extension://pifojknhlbglpfoehbppiddjlgebooom/options.html" target="_blank">here</a>
-            .</p>
-        </div>
-    </div> -->
     <v-card height="360">
         <canvas id="output" width="610" height="360"></canvas>
         <v-card-text id="ifErr" style="display:none">
@@ -59,7 +49,6 @@ export default {
         stream.getTracks().forEach((track) => {
             track.stop();
         });
-        // console.log('disposed');
     }
 }
 async function loadVideo(){
@@ -90,13 +79,11 @@ function detectPose(video,net){
         if (pose.score >= 0.1) {
             utils.drawKeypoints(pose.keypoints, 0.3, ctx);
             utils.drawSkeleton(pose.keypoints, 0.3, ctx);
-            // utils.drawBoundingBox(pose.keypoints, ctx);
         }
         requestAnimationFrame(detect);
     }
     detect();
 }
-// setup();
 </script>
 
 <style scoped>

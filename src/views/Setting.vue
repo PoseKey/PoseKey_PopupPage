@@ -109,28 +109,6 @@
         <div>All Icons are made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       </v-card-text>
     </v-card>
-    <!-- <v-layout>
-      <v-flex xs12>
-        <v-slider
-          label = "posenet model"
-          :tick-labels="ticksLabels"
-          :max="3"
-          step="1"
-          ticks="always"
-          tick-size="2"
-          >
-        </v-slider>
-        <v-slider
-          label = "image scale"
-          min="20"
-          thumb-label="always"
-          >
-        </v-slider>
-        <v-slider
-          label=""
-        ></v-slider>
-      </v-flex>
-    </v-layout> -->
   </div>
 </template>
 
@@ -162,7 +140,6 @@ export default {
   },
   methods: {
     change: function(){
-      // console.log(this.pm);
       let db = this.$db.requireDB();
       let uid = store.state.user.uid;
       db.collection('users').doc(uid).collection('model').doc('setting').update({
@@ -199,11 +176,9 @@ export default {
     // )
     let db = this.$db.requireDB();
     let uid = store.state.user.uid;
-    // console.log(uid);
     db.collection('users').doc(uid).collection('model').doc('setting').get().then(
       (data)=>{
         if(data.exists){
-          // console.log(data.data());
           this.pm = data.data().pm;
           this.sc = data.data().sc;
           this.fq = data.data().fq;

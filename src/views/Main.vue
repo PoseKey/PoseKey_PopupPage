@@ -1,28 +1,9 @@
 <template>
-    <!-- <div>
-        <v-data-table
-            :headers="headers"
-            :items="details"
-            class="elevation-1"
-        >
-            <template slot="items" slot-scope="props">
-                <td>{{props.item.name}}</td>
-                <td class="text-xs-right">{{ props.item.Description }}</td>
-                <td class="text-xs-right">{{ props.item.Function }}</td>
-            </template>
-            <template slot="no-data">
-                <v-alert :value="true" color="error" icon="warning">
-                    Sorry, nothing to display here :(
-                </v-alert>
-            </template>
-        </v-data-table>
-    </div> -->
     <div>
         <v-card>
             <v-card-title>
                 <h2>Customize</h2>
             </v-card-title>
-                <!-- <v-divider></v-divider> -->
             <v-card-text>
                 <v-list>
                     <v-list-tile ripple>
@@ -44,12 +25,6 @@
                         <h2>Default Model Setting</h2>
                     </v-card-title>
                     <v-card-text>
-                        <!-- <v-overflow-btn :items="options"
-                                    label="Functions"
-                                    item-text="text"
-                                    dense clearable
-                                    @change="switched(value)">
-                        </v-overflow-btn> -->
                         <v-list>
                             <v-list-tile
                             v-for="item in details"
@@ -154,8 +129,6 @@ export default {
             this.$router.replace({name: 'login'})
         },
         switchd(num){
-            // console.log(item, this.defaults);
-            // console.log(this.defaults[num]);
             if(this.defaults[num] == undefined) this.defaults[num]= null;
             let db = this.$db.requireDB();
             let uid = store.state.user.uid;
@@ -172,8 +145,6 @@ export default {
       );
         },
         switchc(num){
-            // console.log(item, this.defaults);
-            // console.log(this.customs[num]);
             if(this.customs[num] == undefined) this.customs[num]= null;
             let db = this.$db.requireDB();
             let uid = store.state.user.uid;
