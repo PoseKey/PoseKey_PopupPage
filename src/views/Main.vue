@@ -54,7 +54,6 @@
                             <v-list-tile
                             v-for="item in details"
                             :key="item.name"
-                            style="margin:5px;"
                             >
                                 <v-list-tile-avatar>
                                     <img :src="item.image"/>
@@ -65,7 +64,7 @@
                                 <v-list-tile-action>
                                     <v-overflow-btn
                                     v-model="defaults[item.id - 1]"
-                                    color="blue" style="width:280px;" 
+                                    color="blue" style="width:250px;" 
                                     :items="options"
                                     label="Functions"
                                     item-value="text"
