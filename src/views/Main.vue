@@ -136,7 +136,7 @@ export default {
                 { text: "Function", value: 'Function'}
             ],
             details: [],
-            options:['a','b','c','d','e','f'],
+            options: ['volume down','volume up', 'stop video','forward 10sec', 'backward 10sec', 'next video', 'scroll up', 'scroll down', 'previous slide', 'next slide'],
             // options: [
             //     {
             //         text: 'Scroll Up'
