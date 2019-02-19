@@ -196,7 +196,11 @@ export default {
           })
         }
       }
-    )
+    );
+    chrome.runtime.sendMessage({
+        data:"login",
+        uidm: uid
+    });
   }
 }
 </script>

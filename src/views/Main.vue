@@ -120,7 +120,8 @@ export default {
             custom:false,
             step: 1,
             defaults:[],
-            customs:[]
+            customs:[],
+            local: false
         }
     },
     methods: {
@@ -190,6 +191,15 @@ export default {
                     this.defaults = [null,null,null,null,null,null];
                     this.customs  = [null,null,null,null,null,null];
                 }
+            }
+        );
+        chrome.runtime.sendMessage(
+            {
+                data:"login",
+                uidm: uid
+            },
+            (response)=>{
+                response.localm = this.local;
             }
         );
     },
