@@ -30,6 +30,11 @@ export default {
     computed: {
         ...mapGetters(['user']),
         nextRoute () {
+            let uid = store.state.user.uid;
+            chrome.runtime.sendMessage({
+                data:"login",
+                user: uid
+            });
             return this.$route.query.redirect || '/'
         }
     },
@@ -42,7 +47,7 @@ export default {
     },
     methods: {
         async loginG () {
-            const auth = await this.$auth.loginG()
+            const auth = await this.$auth.loginG();
         }
     }
 }

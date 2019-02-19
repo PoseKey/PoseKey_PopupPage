@@ -161,6 +161,9 @@ export default {
     logout: function(){
         this.$auth.logout();
         this.$router.replace({name: 'login'})
+        chrome.runtime.sendMessage({
+          data:"logout"
+        })
     },
   },
   mounted (){
