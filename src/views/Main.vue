@@ -217,8 +217,8 @@ export default {
                 uidm: uid
             },
             (response)=>{
-                response.localm = this.local;
-                response.customm = this.custom;
+                this.local = response.localm;
+                this.custom = response.customm;
             }
         );
     },
