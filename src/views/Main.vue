@@ -60,11 +60,12 @@
                     <v-card-title>
                         <h2>Custom Model Setting</h2>
                     </v-card-title>
-                    <v-card-text>
+                    <v-card-text v-show="local">
                         <v-list>
                             <v-list-tile
-                            v-for="item in details"
-                            :key="item.name"
+                            v-for="item in customd"
+                            :key="item.id"
+                            style="margin-top:12px;"
                             >
                                 <v-list-tile-content>
                                     <v-list-tile-title v-text="item.Description"></v-list-tile-title>
@@ -72,19 +73,28 @@
                                 <v-list-tile-action>
                                     <v-overflow-btn
                                     v-model="customs[item.id - 1]"
-                                    color="blue" style="width:230px;" 
+                                    background-color="secondary"
+                                    style="width:250px;"
                                     :items="options"
                                     label="Functions"
                                     item-value="text"
+                                    single-line
                                     clearable
                                     dense
-                                    single-line
                                     return-object
                                     @change="switchc(item.id - 1)"
                                     ></v-overflow-btn>
                                 </v-list-tile-action>
                             </v-list-tile>
                         </v-list>
+                    </v-card-text>
+                    <v-card-text v-show="!local">
+                        You have not created <strong>your own model</strong>! PoseKey supports users to make their own unique poses that could be mapped with each functions! Go to the "Options Page" to create your own poses!!
+                        <v-divider></v-divider>
+                        <v-btn 
+                            color="primary"
+                            href="chrome-extension://pifojknhlbglpfoehbppiddjlgebooom/options.html" target="_blank"
+                        >Option Page</v-btn>
                     </v-card-text>
                 </v-window-item>
             </v-window>
@@ -117,11 +127,11 @@ export default {
             ],
             details: [],
             options: ['volume down','volume up', 'stop video','forward 10sec', 'backward 10sec', 'next video', 'scroll up', 'scroll down', 'previous slide', 'next slide'],
-            custom:false,
+            custom:false,//false
             step: 1,
             defaults:[],
             customs:[],
-            local: false
+            local: false//false
         }
     },
     methods: {
@@ -151,6 +161,7 @@ export default {
             let uid = store.state.user.uid;
             db.collection('users').doc(uid).collection('model').doc('map').update({
                 customs : this.customs,
+                customd: this.customd,
             });
             chrome.runtime.sendMessage({
                 data:"poses",
@@ -182,14 +193,31 @@ export default {
                 if(doc.exists){
                     this.defaults = doc.data().defaults;
                     this.customs = doc.data().customs;
+                    this.customd = doc.data().customd;
                 }
                 else{
                     db.collection('users').doc(uid).collection('model').doc('map').set({
                         defaults:[null,null,null,null,null,null],
-                        customs:[null,null,null,null,null,null]
+                        customs:[null,null,null,null,null,null],
+                        customd:[
+                            {Description:"Pose 1", id: 1},
+                            {Description:"Pose 2", id: 2},
+                            {Description:"Pose 3", id: 3},
+                            {Description:"Pose 4", id: 4},
+                            {Description:"Pose 5", id: 5},
+                            {Description:"Pose 6", id: 6}
+                        ],
                     });
                     this.defaults = [null,null,null,null,null,null];
                     this.customs  = [null,null,null,null,null,null];
+                    this.customd = [
+                        {Description:"Pose 1", id: 1},
+                        {Description:"Pose 2", id: 2},
+                        {Description:"Pose 3", id: 3},
+                        {Description:"Pose 4", id: 4},
+                        {Description:"Pose 5", id: 5},
+                        {Description:"Pose 6", id: 6}
+                    ];
                 }
             }
         );
@@ -200,6 +228,7 @@ export default {
             },
             (response)=>{
                 response.localm = this.local;
+                response.customm = this.custom;
             }
         );
     },
