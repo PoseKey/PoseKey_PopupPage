@@ -115,16 +115,6 @@ export default {
     },
     data (){
         return{
-            headers:[
-                {
-                    text: 'name',
-                    align: 'left',
-                    sortable: false,
-                    value: 'name'
-                },
-                { text: "Description", value: 'Description'},
-                { text: "Function", value: 'Function'}
-            ],
             details: [],
             options: ['volume down','volume up', 'stop video','forward 10sec', 'backward 10sec', 'next video', 'scroll up', 'scroll down', 'previous slide', 'next slide'],
             custom:false,//false
