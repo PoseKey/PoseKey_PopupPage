@@ -10,5 +10,6 @@ Vue.use(Vuetify, {
     primary: '#1D3557',
     secondary: '#457B9D',
     accent: '#F45353',
+    button: 'FFEBEE'
   }
 })

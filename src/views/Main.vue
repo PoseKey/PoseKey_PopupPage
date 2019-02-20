@@ -40,7 +40,7 @@
                                 <v-list-tile-action>
                                     <v-overflow-btn
                                     v-model="defaults[item.id - 1]"
-                                    background-color="#E8EAF6"
+                                    background-color="button"
                                     color="accent"
                                     style="width:250px;"
                                     :items="options"
@@ -74,7 +74,7 @@
                                 <v-list-tile-action>
                                     <v-overflow-btn
                                     v-model="customs[item.id - 1]"
-                                    background-color="#E8EAF6"
+                                    background-color="buttonE"
                                     color="accent"
                                     style="width:250px;"
                                     :items="options"
