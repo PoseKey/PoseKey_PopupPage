@@ -116,7 +116,7 @@ export default {
     data (){
         return{
             details: [],
-            options: ['volume down','volume up', 'stop video','forward 10sec', 'backward 10sec', 'next video', 'scroll up', 'scroll down', 'previous slide', 'next slide'],
+            options: ['volume down','volume up', 'stop video','forward 10sec', 'backward 10sec', 'next video', 'scroll up', 'scroll down', 'previous slide', 'next slide','go to top','go to bottom', 'close tab', 'move tab left', 'move tab right', 'close window', 'zoom-in', 'zoom-out', 'zoom-reset', 'back', 'forward', 'reload',],
             custom:false,//false
             step: 1,
             defaults:[],
