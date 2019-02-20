@@ -40,7 +40,8 @@
                                 <v-list-tile-action>
                                     <v-overflow-btn
                                     v-model="defaults[item.id - 1]"
-                                    background-color="secondary"
+                                    background-color="#E8EAF6"
+                                    color="accent"
                                     style="width:250px;"
                                     :items="options"
                                     label="Functions"
@@ -73,7 +74,8 @@
                                 <v-list-tile-action>
                                     <v-overflow-btn
                                     v-model="customs[item.id - 1]"
-                                    background-color="secondary"
+                                    background-color="#E8EAF6"
+                                    color="accent"
                                     style="width:250px;"
                                     :items="options"
                                     label="Functions"
@@ -92,7 +94,7 @@
                         You have not created <strong>your own model</strong>! PoseKey supports users to make their own unique poses that could be mapped with each functions! Go to the "Options Page" to create your own poses!!
                         <v-divider></v-divider>
                         <v-btn 
-                            color="primary"
+                            color="secondary"
                             href="chrome-extension://pifojknhlbglpfoehbppiddjlgebooom/options.html" target="_blank"
                         >Option Page</v-btn>
                     </v-card-text>

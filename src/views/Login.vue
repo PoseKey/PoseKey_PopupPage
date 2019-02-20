@@ -3,12 +3,12 @@
         <v-card-title>
             <h2>Please Sign in to Proceed</h2>
         </v-card-title>
-        <v-card-text >
+        <v-card-text>
             <v-list>
                 <!-- <v-btn color="secondary" outline round v-on:click="loginG">
                     <img right src="https://www.google.co.kr/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" height="20">
                 </v-btn> -->
-                <v-btn color="deep-orange" outline round v-on:click="loginG">
+                <v-btn color="accent" outline round v-on:click="loginG">
                     <!-- <img right src="https://www.google.co.kr/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" height="20"> -->
                     Sign in with Google
                 </v-btn>

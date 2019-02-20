@@ -18,7 +18,7 @@
         slot="extension"
         color="primary"
         dark
-        slider-color="white"
+        slider-color="accent"
         grow
         fixed-tabs>
         <v-tab to="/"><v-icon>gesture</v-icon></v-tab>

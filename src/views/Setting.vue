@@ -22,7 +22,7 @@
             <h3> {{displayName}} </h3>
           </v-list-tile-content>
           <v-list-tile-action>
-            <v-btn color="primary" round flat v-on:click="logout">Sign Out</v-btn>
+            <v-btn color="secondary" round flat  outline v-on:click="logout">Sign Out</v-btn>
           </v-list-tile-action>
         </v-list-tile>
       </v-card-text>
@@ -44,6 +44,8 @@
       </v-card-title>
       <v-card-text>
         <v-slider
+          color="secondary"
+          thumb-color="accent"
           v-model="pm"
           label = "posenet model"
           :tick-labels="ticksLabels"
@@ -59,6 +61,8 @@
       </v-card-text>
       <v-card-text>
         <v-slider
+          color="secondary"
+          thumb-color="accent"
           v-model="sc"
           label = "image scale"
           step="0.01"
@@ -73,6 +77,8 @@
       </v-card-text>
       <v-card-text>
         <v-slider
+          color="secondary"
+          thumb-color="accent"
           v-model="fq"
           label="frequency"
           step="100"
@@ -86,6 +92,8 @@
       </v-card-text>
       <v-card-text>
         <v-slider
+          color="secondary"
+          thumb-color="accent"
           v-model="ac"
           label="Accuracy"
           min="50"

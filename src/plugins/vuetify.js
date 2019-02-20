@@ -7,8 +7,8 @@ import colors from 'vuetify/es5/util/colors'
 Vue.use(Vuetify, {
   iconfont: 'md',
   theme: {
-    primary: colors.indigo,
-    secondary: colors.indigo.lighten5,
-    accent: colors.pink,
+    primary: '#1D3557',
+    secondary: '#457B9D',
+    accent: '#F45353',
   }
 })
