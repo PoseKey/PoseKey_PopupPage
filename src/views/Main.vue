@@ -74,7 +74,7 @@
                                 <v-list-tile-action>
                                     <v-overflow-btn
                                     v-model="customs[item.id - 1]"
-                                    background-color="buttonE"
+                                    background-color="button"
                                     color="accent"
                                     style="width:250px;"
                                     :items="options"
