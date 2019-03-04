@@ -95,7 +95,7 @@
                         <v-divider></v-divider>
                         <v-btn 
                             color="secondary"
-                            href="chrome-extension://pifojknhlbglpfoehbppiddjlgebooom/options.html" target="_blank"
+                            @click="optionPage()" target="_blank"
                         >Option Page</v-btn>
                     </v-card-text>
                 </v-window-item>
@@ -139,13 +139,13 @@ export default {
                 defaults: this.defaults,
             });
             chrome.runtime.sendMessage(
-            {
-                data:"poses",
-                customm: this.custom,
-                defaultsm: this.defaults,
-                customsm: this.customs
-            }
-      );
+                {
+                    data:"poses",
+                    customm: this.custom,
+                    defaultsm: this.defaults,
+                    customsm: this.customs
+                }
+            );  
         },
         switchc(num){
             if(this.customs[num] == undefined) this.customs[num]= null;
@@ -161,6 +161,11 @@ export default {
                 defaultsm: this.defaults,
                 customsm: this.customs
             });
+        },
+        optionPage(){
+            chrome.runtime.openOptionsPage();
+            // console.log('clicked');
+            // chrome.tabs.create({url : "/option/index.html"});
         }
     },
     created(){
@@ -186,9 +191,11 @@ export default {
                     this.defaults = doc.data().defaults;
                     this.customs = doc.data().customs;
                     this.customd = doc.data().customd;
+                    this.custom = doc.data().custom;
                 }
                 else{
                     db.collection('users').doc(uid).collection('model').doc('map').set({
+                        custom: false,
                         defaults:[null,null,null,null,null,null],
                         customs:[null,null,null,null,null,null],
                         customd:[
@@ -210,7 +217,14 @@ export default {
                         {Description:"Pose 5", id: 5},
                         {Description:"Pose 6", id: 6}
                     ];
+                    this.custom = false;
                 }
+                chrome.runtime.sendMessage({
+                    data:"poses",
+                    customm: this.custom,
+                    defaultsm: this.defaults,
+                    customsm: this.customs
+                });
             }
         );
         chrome.runtime.sendMessage(

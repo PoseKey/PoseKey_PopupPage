@@ -203,6 +203,15 @@ export default {
             ac: this.ac,
           })
         }
+        chrome.runtime.sendMessage(
+          {
+            data:"setting",
+            pmm: this.pm,
+            scm: this.sc,
+            fqm: this.fq,
+            acm: this.ac
+          }
+        );
       }
     );
     chrome.runtime.sendMessage({
