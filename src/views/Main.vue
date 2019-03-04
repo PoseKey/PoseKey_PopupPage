@@ -174,7 +174,6 @@ export default {
         db.collection('poses').onSnapshot(
             res=>{
                 const changes = res.docChanges();
-
                 changes.forEach(change =>{
                     if (change.type ==='added'){
                         this.details.push({
