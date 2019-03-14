@@ -225,24 +225,24 @@ export default {
                     ];
                     this.custom = false;
                 }
-                // chrome.runtime.sendMessage({
-                //     data:"poses",
-                //     customm: this.custom,
-                //     defaultsm: this.defaults,
-                //     customsm: this.customs
-                // });
+                chrome.runtime.sendMessage({
+                    data:"poses",
+                    customm: this.custom,
+                    defaultsm: this.defaults,
+                    customsm: this.customs
+                });
             }
         );
-        // chrome.runtime.sendMessage(
-        //     {
-        //         data:"login",
-        //         uidm: uid
-        //     },
-        //     (response)=>{
-        //         this.local = response.localm;
-        //         this.custom = response.customm;
-        //     }
-        // );
+        chrome.runtime.sendMessage(
+            {
+                data:"login",
+                uidm: uid
+            },
+            (response)=>{
+                this.local = response.localm;
+                this.custom = response.customm;
+            }
+        );
     },
 }
 </script>
