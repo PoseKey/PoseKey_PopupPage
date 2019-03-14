@@ -11,7 +11,7 @@
                             Custom model
                         </v-list-tile-title>
                         <v-list-tile-action>
-                            <v-switch v-model="custom"></v-switch>
+                            <v-switch v-model="custom" @change="toggle"></v-switch>
                         </v-list-tile-action>
                     </v-list-tile>
                 </v-list>
@@ -119,7 +119,7 @@ export default {
         return{
             details: [],
             options: ['volume down','volume up', 'stop video','forward 10sec', 'backward 10sec', 'next video', 'scroll up', 'scroll down', 'previous slide', 'next slide','go to top','go to bottom', 'close tab', 'move tab left', 'move tab right', 'close window', 'zoom-in', 'zoom-out', 'zoom-reset', 'back', 'forward', 'reload',],
-            custom:false,//false
+            custom: false,//false
             step: 1,
             defaults:[],
             customs:[],
@@ -131,12 +131,18 @@ export default {
             this.$auth.logout();
             this.$router.replace({name: 'login'})
         },
+        toggle(){
+            db.collection('users').doc(uid).collection('model').doc('map').update({
+                custom: this.custom,
+            });
+        },
         switchd(num){
             if(this.defaults[num] == undefined) this.defaults[num]= null;
             let db = this.$db.requireDB();
             let uid = store.state.user.uid;
             db.collection('users').doc(uid).collection('model').doc('map').update({
                 defaults: this.defaults,
+                custom: this.custom,
             });
             chrome.runtime.sendMessage(
                 {
@@ -152,6 +158,7 @@ export default {
             let db = this.$db.requireDB();
             let uid = store.state.user.uid;
             db.collection('users').doc(uid).collection('model').doc('map').update({
+                custom: this.custom,
                 customs : this.customs,
                 customd: this.customd,
             });
@@ -218,24 +225,24 @@ export default {
                     ];
                     this.custom = false;
                 }
-                chrome.runtime.sendMessage({
-                    data:"poses",
-                    customm: this.custom,
-                    defaultsm: this.defaults,
-                    customsm: this.customs
-                });
+                // chrome.runtime.sendMessage({
+                //     data:"poses",
+                //     customm: this.custom,
+                //     defaultsm: this.defaults,
+                //     customsm: this.customs
+                // });
             }
         );
-        chrome.runtime.sendMessage(
-            {
-                data:"login",
-                uidm: uid
-            },
-            (response)=>{
-                this.local = response.localm;
-                this.custom = response.customm;
-            }
-        );
+        // chrome.runtime.sendMessage(
+        //     {
+        //         data:"login",
+        //         uidm: uid
+        //     },
+        //     (response)=>{
+        //         this.local = response.localm;
+        //         this.custom = response.customm;
+        //     }
+        // );
     },
 }
 </script>
