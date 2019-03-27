@@ -3,6 +3,16 @@
         <v-card>
             <v-card-title>
                 <h2>Customize</h2>
+                <v-spacer></v-spacer>
+                <v-tooltip right>
+                    <template #activator="data">
+                        <v-icon v-on="data.on" color="primary">help</v-icon>
+                    </template>
+                    <span>
+                        어쩌구 저쩌구<br>
+                        br태크는 줄바꿈
+                    </span>
+                </v-tooltip>
             </v-card-title>
             <v-card-text>
                 <v-list>
@@ -23,6 +33,16 @@
                 <v-window-item :value="false">
                     <v-card-title>
                         <h2>Default Model Setting</h2>
+                        <v-spacer></v-spacer>
+                        <v-tooltip right>
+                            <template #activator="data">
+                                <v-icon v-on="data.on" color="primary">help</v-icon>
+                            </template>
+                            <span>
+                                어쩌구 저쩌구<br>
+                                br태크는 줄바꿈
+                            </span>
+                        </v-tooltip>
                     </v-card-title>
                     <v-card-text>
                         <v-list>
@@ -60,6 +80,15 @@
                 <v-window-item :value="true">
                     <v-card-title>
                         <h2>Custom Model Setting</h2>
+                        <v-spacer></v-spacer>
+                        <v-tooltip right>
+                            <template #activator="data">
+                                <v-icon v-on="data.on" color="primary">help</v-icon>
+                            </template>
+                            <span>
+                                Copyrights, Credits, and Special thanks
+                            </span>
+                        </v-tooltip>
                     </v-card-title>
                     <v-card-text v-show="local">
                         <v-list>

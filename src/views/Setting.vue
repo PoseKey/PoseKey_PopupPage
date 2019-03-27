@@ -1,14 +1,5 @@
 <template>
   <div class="about">
-    <!-- <v-layout row wrap align-center=""> -->
-<!--       
-      <v-avatar size="30">
-        <img :src="this.user.photoURL" alt="avatar">
-      </v-avatar>
-      <h3> {{displayName}} </h3>
-      <v-btn color="primary" round v-on:click="logout">Sign Out</v-btn> -->
-
-    <!-- </v-layout> -->
     <v-card>
       <v-card-title>
         <h2>Signed in as</h2>
@@ -30,15 +21,20 @@
     <v-divider></v-divider>
     <v-card>
       <v-card-title>
+        <h2>Model Setting</h2>
+        <v-spacer></v-spacer>
         <v-tooltip right>
           <template #activator="data">
-           <h2 v-on="data.on">Model Setting</h2>
+            <v-icon v-on="data.on" color="primary">help</v-icon>
           </template>
-          <span>Recommended 
-            posenet model: 0.75
-            image scale: 0.4
-            frequency: 0.5
-            accuracy: 0.6
+          <span>
+            Setting Tab provides configuration options for the AI model running in your web browser.<br>
+            Recommended Settings are as followed:<br>
+            posenet model: 0.75 <br>
+            image scale: 0.4 <br>
+            frequency: 0.5 <br>
+            accuracy: 0.6<br><br>
+            However, if your device lags too much, you should try lowering the options.<br>
           </span>
         </v-tooltip>
       </v-card-title>
@@ -112,6 +108,16 @@
     <v-card>
       <v-card-title>
         <h2>Interface Setting</h2>
+        <v-spacer></v-spacer>
+        <v-tooltip right>
+          <template #activator="data">
+            <v-icon v-on="data.on" color="primary">help</v-icon>
+          </template>
+          <span>
+            This setting allows you to change colors and location of the directive interface.<br>
+            The palette beside the control panel shows you the color before you actually apply.
+          </span>
+        </v-tooltip>
       </v-card-title>
       <v-card-text>
         <div style="display:flex">
@@ -184,6 +190,15 @@
     <v-card>
       <v-card-title>
         <h2>Credits</h2>
+        <v-spacer></v-spacer>
+        <v-tooltip right>
+          <template #activator="data">
+            <v-icon v-on="data.on" color="primary">help</v-icon>
+          </template>
+          <span>
+            Copyrights, Credits, and Special thanks
+          </span>
+        </v-tooltip>
       </v-card-title>
       <v-card-text>
         <div>All Icons are made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
@@ -216,9 +231,9 @@ export default {
       sc:0.4,
       fq:500,
       ac:70,
-      ri:0,
-      gi:0,
-      bi:0,
+      ri:56,
+      gi:104,
+      bi:188,
       ti:0.3,
       hi:true,
       vi:true,
