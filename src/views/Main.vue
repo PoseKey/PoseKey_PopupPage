@@ -9,8 +9,7 @@
                         <v-icon v-on="data.on" color="primary">help</v-icon>
                     </template>
                     <span>
-                        어쩌구 저쩌구<br>
-                        br태크는 줄바꿈
+                        You can use your own trained model.
                     </span>
                 </v-tooltip>
             </v-card-title>
@@ -39,8 +38,9 @@
                                 <v-icon v-on="data.on" color="primary">help</v-icon>
                             </template>
                             <span>
-                                어쩌구 저쩌구<br>
-                                br태크는 줄바꿈
+                                You can connect the functions of the browser you want to the pose of the basic model. <br>
+                                Set the function you want to the given pose on the left.
+
                             </span>
                         </v-tooltip>
                     </v-card-title>
@@ -86,7 +86,9 @@
                                 <v-icon v-on="data.on" color="primary">help</v-icon>
                             </template>
                             <span>
-                                Copyrights, Credits, and Special thanks
+                                You can set the function with your own trained model.<br>
+                                If you don't make your own model, use the default model or click the below button 'OPTION PAGE'.<br>
+                                You can make the model in the option page.
                             </span>
                         </v-tooltip>
                     </v-card-title>
