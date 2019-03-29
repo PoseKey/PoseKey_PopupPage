@@ -38,9 +38,8 @@
                                 <v-icon v-on="data.on" color="primary">help</v-icon>
                             </template>
                             <span>
-                                You can connect the functions of the browser you want to the pose of the basic model. <br>
-                                Set the function you want to the given pose on the left.
-
+                                You can match the functions of the browser you want with the pose of the default AI model. <br>
+                                Set the function you want with the given poses on the left.
                             </span>
                         </v-tooltip>
                     </v-card-title>
@@ -86,9 +85,9 @@
                                 <v-icon v-on="data.on" color="primary">help</v-icon>
                             </template>
                             <span>
-                                You can set the function with your own trained model.<br>
-                                If you don't make your own model, use the default model or click the below button 'OPTION PAGE'.<br>
-                                You can make the model in the option page.
+                                You can match the function with your own custom trained model.<br>
+                                If you haven't created your own model, use the default model or click the 'OPTION PAGE' button below.<br>
+                                You can create a custom model in the option page.
                             </span>
                         </v-tooltip>
                     </v-card-title>

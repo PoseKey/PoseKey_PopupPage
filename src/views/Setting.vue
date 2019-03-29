@@ -21,14 +21,14 @@
     <v-divider></v-divider>
     <v-card>
       <v-card-title>
-        <h2>Model Setting</h2>
+        <h2>AI Model Setting</h2>
         <v-spacer></v-spacer>
         <v-tooltip right>
           <template #activator="data">
             <v-icon v-on="data.on" color="primary">help</v-icon>
           </template>
           <span>
-            Setting Tab provides configuration options for the AI model running in your web browser.<br>
+            This tab provides configuration options for the AI model running in your web browser.<br>
             Recommended Settings are as followed:<br>
             posenet model: 0.75 <br>
             image scale: 0.4 <br>
@@ -345,7 +345,6 @@ export default {
             isDialog: this.isDialog,
           })
         }
-        
         this.opacity();
         chrome.runtime.sendMessage(
           {
