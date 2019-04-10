@@ -10,17 +10,17 @@
     <v-toolbar dark color="primary">
       <v-toolbar-title>PoseKey</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn dark flat icon @click.stop="dialog = true">
+        <v-icon>bug_report</v-icon>
+      </v-btn>
       <v-btn dark flat icon @click="switched()">
         <v-icon>power_settings_new</v-icon>
-      </v-btn>
-      <v-btn dark flat icon @click.stop="dialog = true">
-        <v-icon>change_history</v-icon>
       </v-btn>
 
       <v-dialog
       v-model="dialog"
       max-width="290"
-    >
+      >
       <v-card>
         <v-card-title class="headline">Bug Report!</v-card-title>
           <v-container>
@@ -125,11 +125,13 @@ export default {
     },
     sendBugReport: function(){
       this.dialog = false;
-      let db = this.$db.requireDB();
-      db.collection('bug').add({
-        content: this.bug,
-      });
-      bug = "";
+      if(bug != ""){
+        let db = this.$db.requireDB();
+        db.collection('bug').add({
+          content: this.bug,
+        });
+        bug = "";
+      }
     },
     cancelBugReport: function(){
       this.dialog = false;

@@ -125,7 +125,7 @@
                         <br>
                         <br>
                         <v-btn 
-                            color="secondary"
+                            color="primary"
                             round
                             @click="optionPage()" target="_blank"
                         >Option Page</v-btn>
