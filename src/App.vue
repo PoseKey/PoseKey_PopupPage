@@ -13,6 +13,44 @@
       <v-btn dark flat icon @click="switched()">
         <v-icon>power_settings_new</v-icon>
       </v-btn>
+      <v-btn dark flat icon @click.stop="dialog = true">
+        <v-icon>change_history</v-icon>
+      </v-btn>
+
+      <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Bug Report!</v-card-title>
+          <v-container>
+            <v-textarea
+              name="input-7-1"
+              label="What Happened?!"
+              hint="The more detail, the better."
+              v-model="bug"
+            ></v-textarea>
+          </v-container>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            flat="flat"
+            @click="sendBugReport()"
+          >
+            Send
+          </v-btn>
+
+          <v-btn
+            color="accent"
+            flat="flat"
+            @click="cancelBugReport()"
+          >
+            Cancel
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
       <!-- <v-btn v-if="!this.$auth.user" dark round flat v-on:click="logout">Sign Out</v-btn> -->
       <v-tabs 
         slot="extension"
@@ -58,6 +96,8 @@ export default {
   data(){
     return {
       boolean: false,
+      dialog:false,
+      bug:""
     };
   },
   methods:{
@@ -82,7 +122,20 @@ export default {
       //     }
       //   )
       // }
+    },
+    sendBugReport: function(){
+      this.dialog = false;
+      let db = this.$db.requireDB();
+      db.collection('bug').add({
+        content: this.bug,
+      });
+      bug = "";
+    },
+    cancelBugReport: function(){
+      this.dialog = false;
+      bug = "";
     }
+
   },
   mounted(){
     chrome.runtime.sendMessage(

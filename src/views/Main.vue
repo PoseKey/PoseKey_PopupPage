@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-card>
+        <v-card hover>
             <v-card-title>
                 <h2>Customize</h2>
                 <v-spacer></v-spacer>
@@ -27,7 +27,7 @@
             </v-card-text>
         </v-card>
         <v-divider></v-divider>
-        <v-card>
+        <v-card hover>
             <v-window v-model="custom">
                 <v-window-item :value="false">
                     <v-card-title>
@@ -122,11 +122,14 @@
                     </v-card-text>
                     <v-card-text v-show="!local">
                         You have not created <strong>your own model</strong>! PoseKey supports users to make their own unique poses that could be mapped with each functions! Go to the "Options Page" to create your own poses!!
-                        <v-divider></v-divider>
+                        <br>
+                        <br>
                         <v-btn 
                             color="secondary"
+                            round
                             @click="optionPage()" target="_blank"
                         >Option Page</v-btn>
+                        <br>
                     </v-card-text>
                 </v-window-item>
             </v-window>
