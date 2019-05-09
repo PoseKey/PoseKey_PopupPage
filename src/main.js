@@ -22,4 +22,4 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-export { app, router, store} 
+export {router, store} 

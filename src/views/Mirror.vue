@@ -12,6 +12,8 @@
 <script>
 import * as posenet from '@tensorflow-models/posenet';
 import * as utils from "../util";
+import store from '../store'
+
 let net;
 let video;
 let width = 640, height = 480;
@@ -21,14 +23,15 @@ export default {
     data () {
         return {
             msg: 'Welcome to Your Vue.js App',
-            loading: true
+            loading: true,
+            pm:1.0,
+            sc:0.4,
         }
     },
     methods: {
         
     },
     async mounted(){
-        net = await posenet.load(1.01);
         try{
             video = await loadVideo();
         }
@@ -40,7 +43,31 @@ export default {
             ifNErr.style.display = 'none';
             throw e;
         }
-        detectPose(video,net);
+        let db = this.$db.requireDB();
+        let uid = store.state.user.uid;
+        db.collection('users').doc(uid).collection('model').doc('setting').get().then(
+            async (data)=>{
+                if(data.exists){
+                    switch(data.data().pm){
+                        case 0:
+                            this.pm = 0.5;
+                            break;
+                        case 1:
+                            this.pm = 0.75;
+                            break;
+                        case 2:
+                            this.pm = 1.0;
+                            break;
+                        default:
+                            this.pm = 1.01;
+                    }
+                    this.sc = data.data().sc;
+                    // console.log(this.sc, this.pm);
+                }
+                net = await posenet.load(this.pm);
+                detectPose(video,net, this.sc);
+            }
+        );
     },
     beforeDestroy(){
         net.dispose();
@@ -65,11 +92,11 @@ async function loadVideo(){
     return video;
 }
 
-function detectPose(video,net){
+function detectPose(video,net, imageScale){
     const canvas = document.getElementById('output');
     const ctx = canvas.getContext('2d');
     async function detect(){
-        const pose = await net.estimateSinglePose(video,0.3,true,16);
+        const pose = await net.estimateSinglePose(video,imageScale,true,16);
         ctx.clearRect(0,0,width,height);
         ctx.save();
         ctx.scale(-1, 1);
@@ -77,8 +104,8 @@ function detectPose(video,net){
         ctx.drawImage(video,0,0,width,height);
         ctx.restore();
         if (pose.score >= 0.1) {
-            utils.drawKeypoints(pose.keypoints, 0.3, ctx);
-            utils.drawSkeleton(pose.keypoints, 0.3, ctx);
+            utils.drawKeypoints(pose.keypoints, 0.5, ctx);
+            utils.drawSkeleton(pose.keypoints, 0.5, ctx);
         }
         requestAnimationFrame(detect);
     }
