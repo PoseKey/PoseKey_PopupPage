@@ -59,7 +59,7 @@
         slider-color="accent"
         grow
         fixed-tabs>
-        <v-tab to="/"><v-icon>gesture</v-icon></v-tab>
+        <v-tab to="/"><v-icon>accessibility_new</v-icon></v-tab>
         <v-tab to="/mirror"><v-icon>face</v-icon></v-tab>
         <v-tab to="/setting"><v-icon>settings</v-icon></v-tab>
       </v-tabs>
