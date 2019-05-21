@@ -91,7 +91,7 @@
                             </span>
                         </v-tooltip>
                     </v-card-title>
-                    <v-card-text v-show="local">
+                    <v-card-text v-show="aws">
                         <v-list>
                             <v-list-tile
                             v-for="item in customd"
@@ -120,7 +120,7 @@
                             </v-list-tile>
                         </v-list>
                     </v-card-text>
-                    <v-card-text v-show="!local">
+                    <v-card-text v-show="!aws">
                         You have not created <strong>your own model</strong>! PoseKey supports users to make their own unique poses that could be mapped with each functions! Go to the "Options Page" to create your own poses!!
                         <br>
                         <br>
@@ -156,7 +156,7 @@ export default {
             step: 1,
             defaults:[],
             customs:[],
-            local: false//false
+            aws: false
         }
     },
     methods: {
@@ -231,6 +231,7 @@ export default {
                     this.customs = doc.data().customs;
                     this.customd = doc.data().customd;
                     this.custom = doc.data().custom;
+                    this.aws = doc.data().aws;
                 }
                 else{
                     db.collection('users').doc(uid).collection('model').doc('map').set({
@@ -245,6 +246,7 @@ export default {
                             {Description:"Pose 5", id: 5},
                             {Description:"Pose 6", id: 6}
                         ],
+                        aws: false
                     });
                     this.defaults = [null,null,null,null,null,null];
                     this.customs  = [null,null,null,null,null,null];
@@ -257,6 +259,7 @@ export default {
                         {Description:"Pose 6", id: 6}
                     ];
                     this.custom = false;
+                    this.aws = false;
                 }
                 chrome.runtime.sendMessage({
                     data:"poses",
@@ -272,7 +275,6 @@ export default {
                 uidm: uid
             },
             (response)=>{
-                this.local = response.localm;
                 this.custom = response.customm;
             }
         );
